@@ -24,7 +24,7 @@ cy.get('[name="iban"]').type(randomIBAN)
 cy.get('[name="openingBalance"]').type('5000')
 cy.get('.formSubmitBtn > .MuiButtonBase-root').click({force: true})
 })
-it.only('Create account( type = bank )',()=>{
+it.only('Create account( type = Cash )',()=>{
         
  cy.visit('http://dev2.sianty.com/#/login')
  
