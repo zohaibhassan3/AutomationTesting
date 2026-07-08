@@ -35,7 +35,7 @@ describe('Business',()=>{
       // Submit form
       cy.get('.formSubmitBtn > .MuiButtonBase-root').click()
       // Visit Insurance companies listing
-      
+      cy.wait(1000)
       cy.visit('http://dev2.sianty.com/insurance-companies')
     })
 })
