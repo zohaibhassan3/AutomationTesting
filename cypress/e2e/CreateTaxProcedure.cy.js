@@ -16,5 +16,6 @@ describe('Business',()=>{
       cy.get('[name="percentageValue"]').type(20)
       // Submit form
       cy.get('.formSubmitBtn > .MuiButtonBase-root').click()
+      
     })
 })
