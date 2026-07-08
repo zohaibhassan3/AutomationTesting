@@ -8,18 +8,20 @@ const randomBank = bankNames[Math.floor(Math.random() * bankNames.length)]
         
  cy.visit('http://dev2.sianty.com/#/login')
  
-       cy.get('[name="email"]').type('zohaib@email.com')
-       cy.get('[name="password"]').type('zohaib12')
-       cy.get(':nth-child(5) > .MuiButtonBase-root').click() // login done
-       cy.get('[data-key="business_setup"] > .MuiButtonBase-root').trigger('mouseover')
-       cy.contains('Inter Account Transfers').click()
-       cy.get('.justify-between > .flex > div > .MuiButtonBase-root') .click()
-       // form opened
-       cy.get('#react-select-38-input').click()
-       cy.get('[id^="react-select-38-option"]').first().click()
-       cy.get('#react-select-39-input').click({ force: true })
-       cy.get('[id^="react-select-39-option"]').eq(2).click({ force: true })
+       cy.loginCMS()
+       cy.visit('http://dev2.sianty.com/inter-account-transfer/create') // 
+       // Form link > Create Form opened
+      // From Account
+cy.contains('From Account *').closest('.commonSelect').find('input').first().click()
+cy.get('[id^="react-select"][id$="-option-0"]').first().click()
+
+// To Account
+cy.contains('To Account *').closest('.commonSelect').find('input').first().click({ force: true })
+cy.get('[id^="react-select"][id$="-option-0"]').first().click({ force: true })
+
        cy.get('[name="amount"]').type('1000')
        cy.get('.formSubmitBtn > .MuiButtonBase-root').click() // bank transfer Done
+       cy.wait(2000)
+       cy.visit('http://dev2.sianty.com/inter-account-transfers')
     })
 })

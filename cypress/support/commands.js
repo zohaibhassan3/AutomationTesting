@@ -30,7 +30,7 @@ Cypress.Commands.add('loginCMS', () => {
     cy.get('[name="email"]').type('zohaib@email.com')
     cy.get('[name="password"]').type('zohaib12')
     cy.contains('Log In').click()
-    cy.wait(3000)
+    cy.wait(1000)
     
     // Log all localStorage keys
     cy.window().then((win) => {
@@ -41,18 +41,18 @@ Cypress.Commands.add('loginCMS', () => {
 })
 
 Cypress.Commands.add('loginPOS', () => {
-  cy.session('posLogin', () => {
+  
     cy.visit('http://dev1.sianty.com/#/login')
     cy.get('#username').type('zohaib@email.com')
     cy.get('#password').type('zohaib12')
     cy.get('#stationId').type(73)
     cy.get('.ant-btn').click()
-    cy.wait(3000)
+    cy.wait(1000)
 
     // Log all localStorage keys
     cy.window().then((win) => {
       const keys = Object.keys(win.localStorage)
       cy.log('All keys: ' + JSON.stringify(keys))
     })
-  })
+  
 })

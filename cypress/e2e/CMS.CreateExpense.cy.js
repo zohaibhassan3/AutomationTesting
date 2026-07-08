@@ -4,13 +4,9 @@ describe('Business',()=>{
    const randomReferenceNumber = Math.floor(Math.random() * 9000000000 + 1000000000).toString()
     it('Create Expense',()=>{
         
- cy.visit('http://dev2.sianty.com/#/login')
- 
-       cy.get('[name="email"]').type('zohaib@email.com')
-       cy.get('[name="password"]').type('zohaib12')
-       cy.get(':nth-child(5) > .MuiButtonBase-root').click() // login done
-       cy.get('[data-key="business_setup"] > .MuiButtonBase-root').trigger('mouseover')
-       cy.contains('Expenses').click()
+      cy.loginCMS()
+      cy.visit('http://dev2.sianty.com/expenses')
+       
        cy.get('.flex > div > .MuiButtonBase-root').click() // Form opened
        cy.get('[name="title"]').type(randomTitle)
        cy.get('[name="referenceNumber"]').type(randomReferenceNumber)
