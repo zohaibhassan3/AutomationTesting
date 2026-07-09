@@ -1,14 +1,20 @@
+
 describe('Business',()=>{
     // Creating Random data
     const randomTitle = Array.from({length: 6}, () => String.fromCharCode(65 + Math.floor(Math.random() * 26))).join('')
     const randomArabicTitle = Array.from({length: 6}, () => String.fromCharCode(0x0621 + Math.floor(Math.random() * 28))).join('')
     const randomInvalidDescription = 'A'.repeat(501)
     const randomValidDescription = 'S'.repeat(500)
+    
     it('Create Cancel-Reason',()=>{
       // Call login Function   
       cy.loginCMS()
+      
       // Visit Create form
-      cy.visit('http://dev2.sianty.com/cancellation-reason/create')
+     cy.contains('Business Setup') .trigger('mouseover') .click({ force: true });
+        cy.contains('.MuiListItemButton-root', 'Cancellation Reasons') .trigger('mouseover') .click({ force: true }); // 
+        cy.get('.flex > div > .MuiButtonBase-root').click( {force: true})
+
       // fill form
       cy.get('[name="title"]').type(randomTitle)
       cy.get('[name="secondaryTitle"]').type(randomArabicTitle)
@@ -23,10 +29,6 @@ describe('Business',()=>{
       cy.get('.MuiInputBase-root > [name="description"]').clear().type(randomValidDescription)
       cy.get('.formSubmitBtn > .MuiButtonBase-root').click({ force: true })
 
-     
-      // Visit listing page
-      cy.wait(1000)
-      cy.visit('http://dev2.sianty.com/cancellation-reasons')
     })
 
     })

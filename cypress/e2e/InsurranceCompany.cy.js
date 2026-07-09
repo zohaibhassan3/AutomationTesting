@@ -1,16 +1,23 @@
+
 describe('Business',()=>{
     // Creating Random data
     const randomTitle = Array.from({length: 6}, () => String.fromCharCode(65 + Math.floor(Math.random() * 26))).join('')
     const randomArabicTitle = Array.from({length: 6}, () => String.fromCharCode(0x0621 + Math.floor(Math.random() * 28))).join('')
     const randomEmail = `${Array.from({length: 8}, () => String.fromCharCode(97 + Math.floor(Math.random() * 26))).join('')}@example.com`
     const randomName = Array.from({length: 6}, () => String.fromCharCode(65 + Math.floor(Math.random() * 26))).join('')
-    const randomTradeNumber = Math.floor(Math.random() * 9000000000 + 1000000000).toString()
-    it('Create Cancel-Reason',()=>{
-      // Call login Function   
+       const randomTradeNumber = Math.floor(Math.random() * 9000000000 + 1000000000).toString()
+    
+       it('Create Cancel-Reason',()=>{
+     
+        // Call login Function   
       cy.loginCMS()
+      
       // Visit Create form
-      cy.visit('http://dev2.sianty.com/insurance-company/create')
-      // fill form
+     cy.contains('Business Setup') .trigger('mouseover') .click({ force: true });
+        cy.contains('.MuiListItemButton-root', 'Insurance Companies') .trigger('mouseover') .click({ force: true }); // 
+        cy.get('.flex > div > .MuiButtonBase-root').click( {force: true})
+     
+        // fill form
       cy.get('[name="title"]').type(randomTitle)
       cy.get('[name="secondaryTitle"]').type(randomArabicTitle)
       cy.get('[name="email"]').type(randomEmail)
@@ -34,8 +41,6 @@ describe('Business',()=>{
 
       // Submit form
       cy.get('.formSubmitBtn > .MuiButtonBase-root').click()
-      // Visit Insurance companies listing
-      cy.wait(1000)
-      cy.visit('http://dev2.sianty.com/insurance-companies')
+     
     })
 })

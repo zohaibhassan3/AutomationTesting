@@ -26,36 +26,29 @@
 
 Cypress.Commands.add('loginCMS', () => {
   cy.session('cmsLogin', () => {
-    cy.visit('http://dev2.sianty.com/login')
-    cy.get('[name="email"]').type('zohaib@email.com')
-    cy.get('[name="password"]').type('zohaib12')
-    cy.contains('Log In').click()
-    cy.wait(1000)
-    
-    // Log all localStorage keys
-    cy.window().then((win) => {
-      const keys = Object.keys(win.localStorage)
-      cy.log('All keys: ' + JSON.stringify(keys))
-    })
-  })
-})
+    cy.visit('http://dev2.sianty.com/login');
+    cy.get('[name="email"]').type('zohaib@email.com');
+    cy.get('[name="password"]').type('zohaib12');
+    cy.contains('Log In').click();
+    cy.url().should('include', '/analytics', { timeout: 10000 });
+    cy.wait(1000);
+  });
+}, {
+  validate: () => {
+    cy.getCookie('session') // or check localStorage
+      .should('exist');
+  }
+});
 
 Cypress.Commands.add('loginPOS', () => {
-  
-    cy.visit('http://dev1.sianty.com/#/login')
-    cy.get('#username').type('zohaib@email.com')
-    cy.get('#password').type('zohaib12')
-    cy.get('#stationId').type(73)
-    cy.get('.ant-btn').click()
-    cy.wait(1000)
-
-    // Log all localStorage keys
-    cy.window().then((win) => {
-      const keys = Object.keys(win.localStorage)
-      cy.log('All keys: ' + JSON.stringify(keys))
-    })
-  
-})
+  cy.visit('http://dev1.sianty.com/#/login');
+  cy.get('#username').type('zohaib@email.com');
+  cy.get('#password').type('zohaib12');
+  cy.get('#stationId').type('73'); // Use string if input expects text
+  cy.contains('Login').click();
+  cy.url().should('include', '#/', { timeout: 10000 });
+  cy.wait(1000);
+});
  // Verify API / Status code / response message
 Cypress.Commands.add('verifyApi', (method, url, statusCode = 200, message = null) => {
   cy.intercept(method, `**${url}**`).as('apiCall')

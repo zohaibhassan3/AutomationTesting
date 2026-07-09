@@ -5,9 +5,12 @@ describe('Business',()=>{
     it('Create Expense',()=>{
         
       cy.loginCMS()
-      cy.visit('http://dev2.sianty.com/expenses')
+      // Opening Forn
+      cy.contains('Business Setup') .trigger('mouseover') .click({ force: true });
+        cy.contains('.MuiListItemButton-root', 'Expenses') .trigger('mouseover') .click({ force: true }); // 
+        cy.get('.flex > div > .MuiButtonBase-root').click( {force: true})
        
-       cy.get('.flex > div > .MuiButtonBase-root').click() // Form opened
+       
        cy.get('[name="title"]').type(randomTitle)
        cy.get('[name="referenceNumber"]').type(randomReferenceNumber)
        cy.get('[name="amount"]').type('100')

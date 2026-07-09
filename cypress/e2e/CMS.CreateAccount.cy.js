@@ -28,9 +28,6 @@ describe('Create Account', () => {
     // Submit form
     AccountsPage.submitForm()
     cy.wait(1000)
-
-    // Verify by navigating back to accounts list
-    AccountsPage.visit()
   })
 
   it('Create account( type = Cash )', () => {

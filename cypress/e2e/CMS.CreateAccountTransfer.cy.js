@@ -9,8 +9,10 @@ const randomBank = bankNames[Math.floor(Math.random() * bankNames.length)]
  cy.visit('http://dev2.sianty.com/#/login')
  
        cy.loginCMS()
-       cy.visit('http://dev2.sianty.com/inter-account-transfer/create') // 
-       // Form link > Create Form opened
+         // Visit create form
+        cy.contains('Business Setup') .trigger('mouseover') .click({ force: true });
+        cy.contains('.MuiListItemButton-root', 'Inter Account Transfers') .trigger('mouseover') .click({ force: true }); // 
+        cy.get('.justify-between > .flex > div > .MuiButtonBase-root').click( {force: true})
       // From Account
 cy.contains('From Account *').closest('.commonSelect').find('input').first().click()
 cy.get('[id^="react-select"][id$="-option-0"]').first().click()
@@ -21,7 +23,6 @@ cy.get('[id^="react-select"][id$="-option-0"]').first().click({ force: true })
 
        cy.get('[name="amount"]').type('1000')
        cy.get('.formSubmitBtn > .MuiButtonBase-root').click() // bank transfer Done
-       cy.wait(2000)
-       cy.visit('http://dev2.sianty.com/inter-account-transfers')
+       
     })
 })
