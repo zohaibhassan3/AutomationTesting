@@ -1,9 +1,10 @@
+
 describe('General',()=>{
     // Creating Random data
     const randomName = Array.from({length: 6}, () => String.fromCharCode(65 + Math.floor(Math.random() * 26))).join('')
    
     
-    it('Create Units',()=>{
+    it('Create Checklist',()=>{
       // Call login Function   
       cy.loginCMS()
       cy.wait(1000);

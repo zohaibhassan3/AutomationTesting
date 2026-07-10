@@ -25,30 +25,27 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('loginCMS', () => {
-  cy.session('cmsLogin', () => {
-    cy.visit('http://dev2.sianty.com/login');
-    cy.get('[name="email"]').type('zohaib@email.com');
-    cy.get('[name="password"]').type('zohaib12');
-    cy.contains('Log In').click();
-    cy.url().should('include', '/analytics', { timeout: 10000 });
-    cy.wait(1000);
-  });
-}, {
-  validate: () => {
-    cy.getCookie('session') // or check localStorage
-      .should('exist');
-  }
-});
+  cy.clearCookies()
+  cy.clearLocalStorage()
+  cy.wait(500)
+  cy.visit('http://dev2.sianty.com/login')
+  cy.get('[name="email"]').type('zohaib@email.com')
+  cy.get('[name="password"]').type('zohaib12')
+  cy.contains('Log In').click()
+  //cy.wait(3000)
+})
 
 Cypress.Commands.add('loginPOS', () => {
-  cy.visit('http://dev1.sianty.com/#/login');
-  cy.get('#username').type('zohaib@email.com');
-  cy.get('#password').type('zohaib12');
-  cy.get('#stationId').type('73'); // Use string if input expects text
-  cy.contains('Login').click();
-  cy.url().should('include', '#/', { timeout: 10000 });
-  cy.wait(1000);
-});
+  cy.clearCookies()
+  cy.clearLocalStorage()
+  cy.wait(500)
+  cy.visit('http://dev1.sianty.com/#/login')
+  cy.get('#username').type('zohaib@email.com')
+  cy.get('#password').type('zohaib12')
+  cy.get('#stationId').type('73')
+  cy.contains('Login').click()
+  //cy.wait(3000)
+})
  // Verify API / Status code / response message
 Cypress.Commands.add('verifyApi', (method, url, statusCode = 200, message = null) => {
   cy.intercept(method, `**${url}**`).as('apiCall')
@@ -61,3 +58,12 @@ Cypress.Commands.add('verifyApi', (method, url, statusCode = 200, message = null
     }
   })
 })
+
+               // Dropdown format
+/*
+// Open Dropdown
+cy.contains('Label Name *').closest('.commonSelect').find('input').first().click()
+
+// Select Option (change index: 0=first, 1=second, 2=third)
+cy.get('[class*="-option"]').eq(0).click()
+*/

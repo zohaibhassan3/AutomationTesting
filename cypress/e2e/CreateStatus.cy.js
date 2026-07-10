@@ -5,7 +5,7 @@ describe('General',()=>{
     const randomInvalidDescription = 'A'.repeat(501)
     const randomValidDescription = 'Sgf'.repeat(3)
     
-    it('Create Units',()=>{
+    it('Create Status',()=>{
       // Call login Function   
       cy.loginCMS()
       cy.wait(1000);

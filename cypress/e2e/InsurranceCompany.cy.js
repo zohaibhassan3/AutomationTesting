@@ -7,7 +7,7 @@ describe('Business',()=>{
     const randomName = Array.from({length: 6}, () => String.fromCharCode(65 + Math.floor(Math.random() * 26))).join('')
        const randomTradeNumber = Math.floor(Math.random() * 9000000000 + 1000000000).toString()
     
-       it('Create Cancel-Reason',()=>{
+       it('Create Insurance Company',()=>{
      
         // Call login Function   
       cy.loginCMS()

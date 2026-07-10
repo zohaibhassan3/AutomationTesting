@@ -5,7 +5,7 @@ describe('General',()=>{
      const randomState = states[Math.floor(Math.random() * states.length)];
      const randomunitCode = Math.random().toString(36).substring(2, 8).toUpperCase();
 
-    it('Create Units',()=>{
+    it('Create States',()=>{
       // Call login Function   
       cy.loginCMS()
       cy.wait(1000);

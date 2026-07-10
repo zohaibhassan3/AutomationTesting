@@ -2,7 +2,7 @@
 describe('Business',()=>{
     const randomTitle = Array.from({length: 6}, () => String.fromCharCode(65 + Math.floor(Math.random() * 26))).join('')
    
-    it('Create Expense-type',()=>{
+    it('Create Tax Procedure',()=>{
       // Call login Function   
       cy.loginCMS()
       

@@ -9,7 +9,7 @@ describe('General',()=>{
     const randomForm1 = Array.from({length: 6}, () => String.fromCharCode(65 + Math.floor(Math.random() * 26))).join('')
     const randomArabicForm1 = Array.from({length: 6}, () => String.fromCharCode(0x0621 + Math.floor(Math.random() * 28))).join('')
    
-    it('Create Units',()=>{
+    it('Create Inspection Forms',()=>{
       // Call login Function   
       cy.loginCMS()
       cy.wait(1000);
