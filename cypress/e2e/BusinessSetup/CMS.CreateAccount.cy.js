@@ -1,6 +1,6 @@
 
                  // Page Object Model
-import AccountsPage from '../pages/AccountsPage'
+import AccountsPage from '../../pages/AccountsPage'
 
 describe('Create Account', () => {
   // Random test data
